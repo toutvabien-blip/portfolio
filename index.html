@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Camille Moreau</title>
+<meta name="description" content="Portfolio de Camille Moreau : gestion de projet digital, SEO, acquisition et gouvernance web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #05070d;
+    --bg-2: #0a0a11;
+    --surface: #12121a;
+    --surface-2: #1a1b25;
+    --line: #262836;
+    --ink: #ffffff;
+    --ink-2: rgba(255,255,255,.78);
+    --muted: rgba(255,255,255,.55);
+    --blue: #1a9bff;
+    --blue-2: #0b7fe0;
+    --green: #7ee08a;
+    --danger: #ff6b6b;
+    --maxw: 1180px;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Montserrat", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  button, input, textarea, select { font: inherit; color: inherit; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+  b, strong { font-weight: 700; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(2, 11, 20, .82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .logo { font-weight: 300; font-size: 26px; letter-spacing: .14em; text-decoration: none; }
+  .logo b { font-weight: 800; }
+  .links { display: flex; gap: 8px; list-style: none; align-items: center; }
+  .links a { text-decoration: none; font-size: 14px; font-weight: 600; color: rgba(255,255,255,.8); padding: 10px 14px; border-radius: 10px; transition: background .2s, color .2s; }
+  .links a:hover { background: rgba(255,255,255,.07); color: #fff; }
+  .links .pill { background: var(--blue); color: #fff; padding: 10px 20px; border-radius: 999px; }
+  .links .pill:hover { background: var(--blue-2); }
+  .burger { display: none; width: 48px; height: 44px; border-radius: 10px; border: 0; background: rgba(255,255,255,.07); cursor: pointer; }
+  .burger span { display: block; width: 20px; height: 2px; background: #fff; margin: 4px auto; border-radius: 2px; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; padding: 110px 0 120px; isolation: isolate; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(60% 70% at 85% 30%, rgba(26,155,255,.35), transparent 60%),
+      radial-gradient(40% 50% at 70% 90%, rgba(11,90,200,.25), transparent 70%),
+      linear-gradient(180deg, #020b14 0%, var(--bg) 100%);
+  }
+  .badge {
+    display: inline-flex; flex-direction: column; gap: 2px;
+    padding: 12px 20px; border-radius: 12px; position: relative;
+    background: rgba(5,7,13,.6);
+    margin-bottom: 36px;
+  }
+  .badge::before {
+    content: ""; position: absolute; inset: 0; border-radius: 12px; padding: 1.5px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+  }
+  .badge strong {
+    font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+    background: linear-gradient(90deg, var(--blue), var(--green)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .badge span { font-size: 13px; color: var(--ink-2); }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 56px; align-items: center; }
+  h1 {
+    font-weight: 300; font-size: clamp(40px, 6vw, 72px); line-height: 1.08; letter-spacing: -0.01em;
+  }
+  h1 b { font-weight: 800; }
+  .lead { margin-top: 28px; max-width: 58ch; font-size: 20px; color: var(--ink-2); font-weight: 400; }
+  .lead b { color: #fff; }
+  .more { display: inline-flex; gap: 8px; align-items: center; margin-top: 18px; font-weight: 700; text-decoration: none; }
+  .more i { color: var(--blue); font-style: normal; transition: transform .2s; }
+  .more:hover i { transform: translateX(4px); }
+  .cta { margin-top: 44px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 15px 34px; border-radius: 999px; font-size: 17px; font-weight: 700;
+    text-decoration: none; border: 2px solid var(--blue); cursor: pointer;
+    transition: background .2s, transform .2s, box-shadow .2s;
+  }
+  .btn.primary { background: var(--blue); color: #fff; }
+  .btn.primary:hover { background: var(--blue-2); border-color: var(--blue-2); box-shadow: 0 10px 30px rgba(26,155,255,.35); }
+  .btn.ghost { background: transparent; color: var(--blue); }
+  .btn.ghost:hover { background: rgba(26,155,255,.1); }
+  .btn:active { transform: translateY(1px); }
+  .btn[disabled] { opacity: .45; cursor: not-allowed; box-shadow: none; }
+
+  .profile-card {
+    background: linear-gradient(160deg, rgba(26,155,255,.18), rgba(18,18,26,.9) 45%);
+    border: 1px solid rgba(255,255,255,.08); border-radius: 22px; padding: 32px;
+    box-shadow: 0 40px 80px rgba(0,0,0,.5);
+  }
+  .avatar {
+    width: 84px; height: 84px; border-radius: 20px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--blue), #0a4fb3); font-weight: 800; font-size: 30px; letter-spacing: .04em;
+  }
+  .profile-card h3 { margin-top: 20px; font-size: 22px; font-weight: 700; }
+  .profile-card .role { color: var(--muted); font-size: 15px; }
+  .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+  .kpi { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 12px; padding: 14px; }
+  .kpi strong { display: block; font-size: 26px; font-weight: 800; }
+  .kpi span { font-size: 13px; color: var(--muted); }
+  .status { display: flex; align-items: center; gap: 10px; margin-top: 22px; font-size: 14px; color: var(--ink-2); }
+  .status::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(126,224,138,.18); }
+
+  /* ---------- Sections ---------- */
+  section { padding: 110px 0; }
+  section.alt { background: var(--surface); }
+  section.deep { background: var(--bg-2); }
+  .kicker { font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+  h2 { font-weight: 300; font-size: clamp(32px, 4.4vw, 50px); line-height: 1.12; max-width: 22ch; }
+  h2 b { font-weight: 800; }
+  .sub { margin-top: 20px; color: var(--ink-2); max-width: 62ch; font-size: 18px; }
+  .head { margin-bottom: 56px; }
+  .center { text-align: center; }
+  .center h2, .center .sub { margin-left: auto; margin-right: auto; }
+
+  /* Expertise */
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .card {
+    background: var(--surface-2); border: 1px solid rgba(255,255,255,.06); border-radius: 18px; padding: 30px 26px;
+    transition: transform .25s, border-color .25s, background .25s;
+  }
+  .card:hover { transform: translateY(-6px); border-color: rgba(26,155,255,.5); background: #1d1f2b; }
+  .ico {
+    width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
+    background: rgba(26,155,255,.14); color: var(--blue); margin-bottom: 22px;
+  }
+  .ico svg { width: 26px; height: 26px; }
+  .card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+  .card p { color: var(--muted); font-size: 15px; }
+
+  /* Parcours */
+  .timeline { display: grid; gap: 18px; }
+  .item {
+    display: grid; grid-template-columns: 180px 1fr; gap: 32px; align-items: start;
+    background: var(--surface); border: 1px solid rgba(255,255,255,.06); border-radius: 18px; padding: 30px 32px;
+  }
+  .when { font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); padding-top: 4px; }
+  .item h3 { font-size: 21px; font-weight: 700; }
+  .item .org { font-weight: 600; color: var(--ink-2); margin: 2px 0 12px; }
+  .item p { color: var(--muted); font-size: 15px; max-width: 70ch; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .tag { font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 999px; background: rgba(26,155,255,.12); color: #8cc9ff; }
+
+  .skills { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .skill { padding: 12px 22px; border: 1px solid var(--line); border-radius: 999px; font-size: 15px; font-weight: 600; background: var(--surface-2); }
+
+  /* ---------- Contact form ---------- */
+  .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: start; }
+  .contact-side ul { list-style: none; margin-top: 32px; display: grid; gap: 18px; }
+  .contact-side li { display: flex; gap: 14px; color: var(--ink-2); font-size: 16px; }
+  .contact-side li i { flex: none; width: 28px; height: 28px; border-radius: 8px; background: rgba(26,155,255,.14); color: var(--blue); display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: 13px; }
+  .panel {
+    background: var(--surface-2); border: 1px solid rgba(255,255,255,.07); border-radius: 22px; padding: 36px;
+    box-shadow: 0 30px 70px rgba(0,0,0,.45);
+  }
+  .steps { display: flex; gap: 8px; margin-bottom: 30px; }
+  .steps span { flex: 1; height: 4px; border-radius: 4px; background: var(--line); transition: background .3s; }
+  .steps span.on { background: linear-gradient(90deg, var(--blue), var(--green)); }
+  .step-title { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+  .step h3 { font-size: 24px; font-weight: 700; margin-bottom: 22px; }
+  .step { display: none; }
+  .step.active { display: block; animation: fade .35s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .choice { position: relative; }
+  .choice input { position: absolute; opacity: 0; pointer-events: none; }
+  .choice label {
+    display: flex; flex-direction: column; gap: 4px; height: 100%;
+    padding: 16px 18px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--surface);
+    cursor: pointer; transition: border-color .2s, background .2s;
+  }
+  .choice label strong { font-size: 15px; }
+  .choice label span { font-size: 13px; color: var(--muted); }
+  .choice label:hover { border-color: rgba(26,155,255,.5); }
+  .choice input:checked + label { border-color: var(--blue); background: rgba(26,155,255,.1); }
+  .choice input:focus-visible + label { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips .choice label { flex-direction: row; padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; }
+
+  .field { margin-bottom: 18px; }
+  .field > label, .legend { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .legend { margin-top: 6px; }
+  .opt { font-weight: 500; color: var(--muted); }
+  .field input, .field textarea, .field select {
+    width: 100%; padding: 14px 16px; border-radius: 12px; border: 1.5px solid var(--line);
+    background: var(--surface); outline: none; transition: border-color .2s, box-shadow .2s;
+  }
+  .field textarea { min-height: 130px; resize: vertical; }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(26,155,255,.15); }
+  .field.invalid input, .field.invalid textarea { border-color: var(--danger); }
+  .err { color: var(--danger); font-size: 13px; margin-top: 6px; display: none; }
+  .invalid .err, .err.show { display: block; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .counter { font-size: 12px; color: var(--muted); text-align: right; margin-top: 4px; }
+  .actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+  .actions .btn { padding: 13px 28px; font-size: 16px; }
+  .link-btn { background: none; border: 0; color: var(--ink-2); font-weight: 600; cursor: pointer; padding: 13px 4px; }
+  .link-btn:hover { color: #fff; }
+  .hp { position: absolute; left: -9999px; }
+
+  .summary { background: var(--surface); border-radius: 14px; padding: 18px 20px; display: grid; gap: 8px; font-size: 14px; }
+  .summary div { display: flex; gap: 12px; }
+  .summary dt { color: var(--muted); min-width: 110px; }
+  .consent { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--ink-2); margin-top: 18px; }
+  .consent input { margin-top: 4px; accent-color: var(--blue); width: 18px; height: 18px; }
+
+  .done { text-align: center; padding: 20px 0; }
+  .done .check {
+    width: 76px; height: 76px; border-radius: 50%; margin: 0 auto 22px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--blue), var(--green)); font-size: 34px; font-weight: 800;
+  }
+  .done h3 { font-size: 26px; margin-bottom: 10px; }
+  .done p { color: var(--ink-2); max-width: 46ch; margin: 0 auto; }
+  .done .cta { justify-content: center; margin-top: 28px; }
+
+  /* ---------- Booking ---------- */
+  .booking { display: grid; grid-template-columns: 300px 1fr; gap: 0; overflow: hidden; padding: 0; }
+  .bk-info { padding: 34px 30px; border-right: 1px solid var(--line); background: linear-gradient(180deg, rgba(26,155,255,.12), transparent 60%); }
+  .bk-info .avatar { width: 56px; height: 56px; border-radius: 14px; font-size: 20px; }
+  .bk-info h3 { margin-top: 18px; font-size: 22px; font-weight: 700; }
+  .bk-info .who { color: var(--muted); font-size: 14px; }
+  .meta { list-style: none; margin-top: 22px; display: grid; gap: 12px; font-size: 14px; color: var(--ink-2); }
+  .meta li { display: flex; gap: 10px; align-items: center; }
+  .meta svg { width: 18px; height: 18px; color: var(--blue); flex: none; }
+  .durations { display: flex; gap: 8px; margin-top: 24px; }
+  .durations button {
+    flex: 1; padding: 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface);
+    cursor: pointer; font-weight: 700; font-size: 14px;
+  }
+  .durations button[aria-pressed="true"] { border-color: var(--blue); background: rgba(26,155,255,.12); color: #8cc9ff; }
+  .bk-main { padding: 34px 32px; display: grid; grid-template-columns: 1fr 220px; gap: 28px; }
+  .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .cal-head strong { font-size: 18px; text-transform: capitalize; }
+  .cal-nav { display: flex; gap: 6px; }
+  .cal-nav button { width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-size: 18px; }
+  .cal-nav button:disabled { opacity: .3; cursor: default; }
+  .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+  .cal .dow { font-size: 12px; font-weight: 700; color: var(--muted); padding: 6px 0; text-transform: uppercase; }
+  .cal button {
+    aspect-ratio: 1; border-radius: 50%; border: 0; background: transparent; font-weight: 600; font-size: 15px; cursor: pointer;
+    color: rgba(255,255,255,.25); transition: background .2s;
+  }
+  .cal button.avail { color: #fff; background: rgba(26,155,255,.12); }
+  .cal button.avail:hover { background: rgba(26,155,255,.3); }
+  .cal button.sel { background: var(--blue) !important; color: #fff; }
+  .cal button.today { box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.35); }
+  .cal button:disabled { cursor: default; }
+  .slots-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; min-height: 24px; text-transform: capitalize; }
+  .slots { display: grid; gap: 8px; max-height: 340px; overflow-y: auto; padding-right: 4px; }
+  .slots button {
+    padding: 12px; border-radius: 10px; border: 1.5px solid rgba(26,155,255,.5); background: transparent; color: #8cc9ff;
+    font-weight: 700; cursor: pointer; transition: background .2s;
+  }
+  .slots button:hover { background: rgba(26,155,255,.12); }
+  .slots button.sel { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .slots .empty { color: var(--muted); font-size: 14px; }
+  .tz { font-size: 12px; color: var(--muted); margin-top: 16px; }
+  .bk-form { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 26px; display: none; }
+  .bk-form.show { display: block; animation: fade .35s ease; }
+  .bk-form .picked { display: inline-flex; gap: 10px; align-items: center; padding: 10px 16px; border-radius: 12px; background: rgba(26,155,255,.12); color: #8cc9ff; font-weight: 700; font-size: 14px; margin-bottom: 20px; }
+  .modes { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+
+  /* Footer */
+  footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,.06); font-size: 14px; color: var(--muted); background: #020b14; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+  footer .logo { font-size: 20px; color: #fff; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 120px); z-index: 100;
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 14px 20px; font-size: 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.5); transition: transform .35s; max-width: calc(100vw - 32px);
+  }
+  .toast.show { transform: translate(-50%, 0); }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+    * { animation: none !important; }
+  }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1020px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+    .hero-grid, .contact-grid { grid-template-columns: 1fr; }
+    .booking { grid-template-columns: 1fr; }
+    .bk-info { border-right: 0; border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
+    nav { height: 64px; }
+    .burger { display: block; }
+    .links {
+      display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+      background: #020b14; padding: 12px 16px 20px; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .links.open { display: flex; }
+    .links .pill { text-align: center; }
+    .hero { padding: 56px 0 72px; }
+    .lead { font-size: 17px; }
+    section { padding: 72px 0; }
+    .cards, .choices, .row { grid-template-columns: 1fr; }
+    .item { grid-template-columns: 1fr; gap: 8px; padding: 24px 20px; }
+    .panel { padding: 24px 18px; border-radius: 18px; }
+    .booking { padding: 0; }
+    .bk-info { padding: 24px 18px; }
+    .bk-main { grid-template-columns: 1fr; padding: 24px 18px; }
+    .slots { grid-template-columns: repeat(3, 1fr); max-height: none; }
+    .btn { width: 100%; }
+    .actions .btn { width: auto; flex: 1; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo">CAMILLE<b>M</b></a>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="links">
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#rdv" class="pill">Prendre rendez-vous</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="badge reveal">
+          <strong>✦ Disponible pour échanger</strong>
+          <span>Réservez un créneau de 30 min en visio</span>
+        </div>
+        <h1 class="reveal">Des projets web <b>clairs, visibles</b> et bien gouvernés</h1>
+        <p class="lead reveal">Je suis <b>Camille Moreau</b>, responsable gouvernance web chez <b>Altéa Software</b>. Gestion de projet, SEO, acquisition et gouvernance web : je fais le lien entre les métiers, les contributeurs et la technique.</p>
+        <a href="#parcours" class="more reveal">Découvrir mon parcours <i>→</i></a>
+        <div class="cta reveal">
+          <a class="btn primary" href="#rdv">Prendre rendez-vous</a>
+          <a class="btn ghost" href="#contact">Décrire mon besoin</a>
+        </div>
+      </div>
+      <aside class="profile-card reveal" aria-label="Résumé du profil">
+        <div class="avatar">CM</div>
+        <h3>Camille Moreau</h3>
+        <p class="role">Digital Project Manager · Web Governance</p>
+        <div class="kpis">
+          <div class="kpi"><strong>8</strong><span>ans d'expérience</span></div>
+          <div class="kpi"><strong>4</strong><span>expertises</span></div>
+          <div class="kpi"><strong>FR · EN</strong><span>langues</span></div>
+          <div class="kpi"><strong>Lyon</strong><span>et à distance</span></div>
+        </div>
+        <p class="status">Répond en général sous 48 h</p>
+      </aside>
+    </div>
+  </div>
+
+  <!-- EXPERTISE -->
+  <section id="expertise" class="deep">
+    <div class="wrap">
+      <div class="head center reveal">
+        <p class="kicker">Expertise</p>
+        <h2>Ce que <b>j'apporte</b> à vos projets</h2>
+        <p class="sub">Quatre domaines complémentaires pour des sites utiles, faciles à trouver et faciles à faire vivre.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>Gestion de projet digital</h3>
+          <p>Cadrage, planning, coordination des parties prenantes et suivi jusqu'à la mise en ligne.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Gouvernance web</h3>
+          <p>Processus de publication, règles de contribution, checklists qualité et cycle de vie des pages.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+          <h3>SEO</h3>
+          <p>Optimisation on-page, structure des contenus, redirections et suivi de la visibilité organique.</p>
+        </article>
+        <article class="card reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div>
+          <h3>Acquisition</h3>
+          <p>Leviers d'acquisition, analyse de la performance et amélioration continue des parcours.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCOURS -->
+  <section id="parcours">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="kicker">Parcours</p>
+        <h2>Expérience <b>& formation</b></h2>
+      </div>
+      <div class="timeline">
+        <div class="item reveal">
+          <p class="when">2022 – aujourd'hui</p>
+          <div>
+            <h3>Responsable gouvernance web</h3>
+            <p class="org">Altéa Software</p>
+            <p>Gouvernance d'un écosystème de 12 sites en 8 langues : processus de publication, accompagnement de 60 contributeurs, redirections, localisation et accessibilité.</p>
+            <div class="tags"><span class="tag">Gouvernance</span><span class="tag">CMS</span><span class="tag">Accessibilité</span><span class="tag">SEO</span></div>
+          </div>
+        </div>
+        <div class="item reveal">
+          <p class="when">2019 – 2022</p>
+          <div>
+            <h3>Cheffe de projet digital</h3>
+            <p class="org">Agence Pixelle</p>
+            <p>Pilotage de refontes de sites pour des clients B2B et e-commerce, du cadrage à la mise en ligne, en lien avec les équipes design et développement.</p>
+            <div class="tags"><span class="tag">Gestion de projet</span><span class="tag">UX</span><span class="tag">Recette</span></div>
+          </div>
+        </div>
+        <div class="item reveal">
+          <p class="when">2018 – 2019</p>
+          <div>
+            <h3>Chargée SEO & acquisition</h3>
+            <p class="org">Studio Brume</p>
+            <p>Audits SEO, plans de contenus et suivi des campagnes d'acquisition payante et organique.</p>
+            <div class="tags"><span class="tag">SEO</span><span class="tag">SEA</span><span class="tag">Analytics</span></div>
+          </div>
+        </div>
+        <div class="item reveal">
+          <p class="when">2016 – 2018</p>
+          <div>
+            <h3>Master Marketing digital & communication</h3>
+            <p class="org">École Supérieure du Numérique de Lyon</p>
+            <p>Stratégie digitale, référencement, gestion de projet web et data marketing.</p>
+          </div>
+        </div>
+      </div>
+      <div class="head center reveal" style="margin:90px 0 32px">
+        <p class="kicker">Compétences</p>
+        <h2>Outils <b>& savoir-faire</b></h2>
+      </div>
+      <div class="skills reveal">
+        <span class="skill">Gestion de projet</span><span class="skill">SEO</span><span class="skill">Acquisition</span>
+        <span class="skill">Gouvernance web</span><span class="skill">Publication de contenus</span><span class="skill">Accessibilité web</span>
+        <span class="skill">Localisation</span><span class="skill">Coordination d'équipes</span><span class="skill">Analytics</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="alt">
+    <div class="wrap contact-grid">
+      <div class="contact-side reveal">
+        <p class="kicker">Contact</p>
+        <h2>Parlez-moi de <b>votre besoin</b></h2>
+        <p class="sub">Quelques questions rapides pour que je comprenne votre projet et vous réponde de façon utile.</p>
+        <ul>
+          <li><i>1</i>Le type de demande et votre objectif</li>
+          <li><i>2</i>Le contexte, le délai et votre périmètre</li>
+          <li><i>3</i>Vos coordonnées, et c'est envoyé</li>
+        </ul>
+      </div>
+
+      <form class="panel reveal" id="needForm" novalidate>
+        <div class="steps" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+        <p class="sr-status" aria-live="polite" style="position:absolute;left:-9999px"></p>
+
+        <!-- Step 1 -->
+        <fieldset class="step active" data-step="1" style="border:0">
+          <p class="step-title">Étape 1 sur 4</p>
+          <h3>Quel est l'objet de votre demande ?</h3>
+          <div class="choices">
+            <div class="choice"><input type="radio" name="type" id="t1" value="Projet web / digital"><label for="t1"><strong>Projet web / digital</strong><span>Refonte, nouveau site, nouvelle section</span></label></div>
+            <div class="choice"><input type="radio" name="type" id="t2" value="SEO / acquisition"><label for="t2"><strong>SEO / acquisition</strong><span>Audit, visibilité, trafic</span></label></div>
+            <div class="choice"><input type="radio" name="type" id="t3" value="Gouvernance web"><label for="t3"><strong>Gouvernance web</strong><span>Processus, règles, qualité</span></label></div>
+            <div class="choice"><input type="radio" name="type" id="t4" value="Opportunité professionnelle"><label for="t4"><strong>Opportunité pro</strong><span>Poste, collaboration</span></label></div>
+            <div class="choice"><input type="radio" name="type" id="t5" value="Échange / conseil"><label for="t5"><strong>Échange / conseil</strong><span>Partage d'expérience</span></label></div>
+            <div class="choice"><input type="radio" name="type" id="t6" value="Autre"><label for="t6"><strong>Autre</strong><span>Dites-m'en plus ensuite</span></label></div>
+          </div>
+          <p class="err" id="err-type">Choisissez un type de demande.</p>
+          <p class="legend" style="margin-top:24px">Quel est votre objectif principal ? <span class="opt">(plusieurs choix possibles)</span></p>
+          <div class="chips">
+            <div class="choice"><input type="checkbox" name="goal" id="g1" value="Gagner en visibilité"><label for="g1">Gagner en visibilité</label></div>
+            <div class="choice"><input type="checkbox" name="goal" id="g2" value="Structurer les processus"><label for="g2">Structurer les processus</label></div>
+            <div class="choice"><input type="checkbox" name="goal" id="g3" value="Lancer un projet"><label for="g3">Lancer un projet</label></div>
+            <div class="choice"><input type="checkbox" name="goal" id="g4" value="Améliorer la qualité"><label for="g4">Améliorer la qualité</label></div>
+            <div class="choice"><input type="checkbox" name="goal" id="g5" value="Recruter"><label for="g5">Recruter</label></div>
+          </div>
+        </fieldset>
+
+        <!-- Step 2 -->
+        <fieldset class="step" data-step="2" style="border:0">
+          <p class="step-title">Étape 2 sur 4</p>
+          <h3>Le contexte de votre projet</h3>
+          <div class="field" id="f-msg">
+            <label for="message">Décrivez votre besoin</label>
+            <textarea id="message" name="message" maxlength="1500" placeholder="Ex. : nous refondons notre site produit et souhaitons structurer la publication entre 3 équipes…"></textarea>
+            <p class="counter"><span id="count">0</span> / 1500</p>
+            <p class="err">Quelques mots suffisent (20 caractères minimum).</p>
+          </div>
+          <p class="legend">Quel est votre délai ?</p>
+          <div class="chips" style="margin-bottom:22px">
+            <div class="choice"><input type="radio" name="delay" id="d1" value="Urgent (< 1 mois)"><label for="d1">Urgent (&lt; 1 mois)</label></div>
+            <div class="choice"><input type="radio" name="delay" id="d2" value="1 à 3 mois"><label for="d2">1 à 3 mois</label></div>
+            <div class="choice"><input type="radio" name="delay" id="d3" value="Plus de 3 mois"><label for="d3">Plus de 3 mois</label></div>
+            <div class="choice"><input type="radio" name="delay" id="d4" value="Pas de date précise"><label for="d4">Pas de date précise</label></div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="scope">Périmètre <span class="opt">(optionnel)</span></label>
+              <select id="scope" name="scope">
+                <option value="">Sélectionner</option>
+                <option>Une page ou une section</option>
+                <option>Un site complet</option>
+                <option>Plusieurs sites / pays</option>
+                <option>Organisation / processus</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="url">Site concerné <span class="opt">(optionnel)</span></label>
+              <input id="url" name="url" type="url" placeholder="https://…">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Step 3 -->
+        <fieldset class="step" data-step="3" style="border:0">
+          <p class="step-title">Étape 3 sur 4</p>
+          <h3>Vos coordonnées</h3>
+          <div class="row">
+            <div class="field" id="f-name">
+              <label for="name">Nom et prénom</label>
+              <input id="name" name="name" autocomplete="name">
+              <p class="err">Indiquez votre nom.</p>
+            </div>
+            <div class="field" id="f-email">
+              <label for="email">E-mail professionnel</label>
+              <input id="email" name="email" type="email" autocomplete="email">
+              <p class="err">Indiquez une adresse e-mail valide.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="company">Entreprise <span class="opt">(optionnel)</span></label>
+              <input id="company" name="company" autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="role">Fonction <span class="opt">(optionnel)</span></label>
+              <input id="role" name="role" autocomplete="organization-title">
+            </div>
+          </div>
+          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        </fieldset>
+
+        <!-- Step 4 -->
+        <fieldset class="step" data-step="4" style="border:0">
+          <p class="step-title">Étape 4 sur 4</p>
+          <h3>Vérifiez avant d'envoyer</h3>
+          <dl class="summary" id="summary"></dl>
+          <label class="consent"><input type="checkbox" id="consent"> J'accepte que mes informations soient utilisées uniquement pour répondre à ma demande.</label>
+          <p class="err" id="err-consent">Merci de cocher cette case pour envoyer.</p>
+        </fieldset>
+
+        <!-- Done -->
+        <div class="step" data-step="done">
+          <div class="done">
+            <div class="check">✓</div>
+            <h3>Merci, c'est bien reçu !</h3>
+            <p id="doneText">Je reviens vers vous sous 48 h. Vous pouvez aussi réserver directement un créneau pour en parler.</p>
+            <div class="cta"><a class="btn primary" href="#rdv">Réserver un créneau</a></div>
+          </div>
+        </div>
+
+        <div class="actions" id="formActions">
+          <button type="button" class="link-btn" id="prevBtn" hidden>← Retour</button>
+          <span></span>
+          <button type="button" class="btn primary" id="nextBtn">Continuer</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="rdv" class="deep">
+    <div class="wrap">
+      <div class="head center reveal">
+        <p class="kicker">Rendez-vous</p>
+        <h2>Réservez un <b>créneau</b> avec moi</h2>
+        <p class="sub">Choisissez une date et une heure qui vous conviennent. Vous recevrez une invitation à ajouter à votre agenda.</p>
+      </div>
+
+      <div class="panel booking reveal">
+        <div class="bk-info">
+          <div class="avatar">CM</div>
+          <h3>Échange découverte</h3>
+          <p class="who">avec Camille Moreau</p>
+          <ul class="meta">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span id="durLabel">30 minutes</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-4v12l-6-4"/></svg>Visio ou téléphone</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>Heure de Paris</li>
+          </ul>
+          <p class="legend" style="margin-top:26px">Durée</p>
+          <div class="durations" role="group" aria-label="Durée du rendez-vous">
+            <button type="button" data-d="15" aria-pressed="false">15 min</button>
+            <button type="button" data-d="30" aria-pressed="true">30 min</button>
+            <button type="button" data-d="45" aria-pressed="false">45 min</button>
+          </div>
+        </div>
+
+        <div class="bk-main">
+          <div>
+            <div class="cal-head">
+              <strong id="monthLabel"></strong>
+              <div class="cal-nav">
+                <button type="button" id="prevMonth" aria-label="Mois précédent">‹</button>
+                <button type="button" id="nextMonth" aria-label="Mois suivant">›</button>
+              </div>
+            </div>
+            <div class="cal" id="cal"></div>
+            <p class="tz">Créneaux disponibles du lundi au vendredi, sur les 6 prochaines semaines.</p>
+          </div>
+          <div>
+            <p class="slots-title" id="slotsTitle">Choisissez une date</p>
+            <div class="slots" id="slots"><p class="empty">Les horaires disponibles apparaîtront ici.</p></div>
+          </div>
+
+          <form class="bk-form" id="bkForm" novalidate>
+            <div class="picked" id="picked"></div>
+            <p class="legend">Format</p>
+            <div class="chips modes">
+              <div class="choice"><input type="radio" name="mode" id="m1" value="Visio" checked><label for="m1">Visio</label></div>
+              <div class="choice"><input type="radio" name="mode" id="m2" value="Téléphone"><label for="m2">Téléphone</label></div>
+            </div>
+            <div class="row">
+              <div class="field" id="b-name">
+                <label for="bname">Nom et prénom</label>
+                <input id="bname" autocomplete="name">
+                <p class="err">Indiquez votre nom.</p>
+              </div>
+              <div class="field" id="b-email">
+                <label for="bemail">E-mail</label>
+                <input id="bemail" type="email" autocomplete="email">
+                <p class="err">Indiquez une adresse e-mail valide.</p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="btopic">Sujet de l'échange <span class="opt">(optionnel)</span></label>
+              <textarea id="btopic" style="min-height:90px" placeholder="En une phrase, de quoi souhaitez-vous parler ?"></textarea>
+            </div>
+            <div class="actions" style="margin-top:8px">
+              <button type="button" class="link-btn" id="bkCancel">Changer de créneau</button>
+              <button type="submit" class="btn primary">Confirmer le rendez-vous</button>
+            </div>
+          </form>
+
+          <div class="bk-form" id="bkDone">
+            <div class="done">
+              <div class="check">✓</div>
+              <h3>Demande de rendez-vous envoyée</h3>
+              <p id="bkDoneText"></p>
+              <div class="cta">
+                <button type="button" class="btn primary" id="icsBtn">Ajouter à mon agenda</button>
+                <button type="button" class="btn ghost" id="bkAgain">Réserver un autre créneau</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="logo">CAMILLE<b>M</b></a>
+    <span>© <span id="y"></span> Camille Moreau · <a href="#contact">Contact</a></span>
+    <a href="#top">Retour en haut ↑</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* =========================================================
+   CONFIGURATION
+   - FORM_ENDPOINT : URL d'un service de formulaire (ex. Formspree :
+     "https://formspree.io/f/xxxxxxx"). Les demandes de contact et de
+     rendez-vous y sont envoyées en JSON.
+   - CONTACT_EMAIL : utilisé en secours si FORM_ENDPOINT est vide
+     (ouvre la messagerie du visiteur avec le message pré-rempli).
+   - Disponibilités : jours, horaires et jours bloqués.
+   ========================================================= */
+const CONFIG = {
+  FORM_ENDPOINT: "",
+  CONTACT_EMAIL: "",
+  OWNER: "Camille Moreau",
+  WORK_DAYS: [1, 2, 3, 4, 5],          // 0 = dimanche … 6 = samedi
+  HOURS: [["09:30", "12:00"], ["14:00", "17:30"]],
+  WEEKS_AHEAD: 6,
+  MIN_NOTICE_HOURS: 24,
+  BLOCKED_DATES: []                    // ex. ["2026-12-24", "2026-12-25"]
+};
+
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const toast = (msg) => { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 3800); };
+const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+
+async function send(subject, data) {
+  if (CONFIG.FORM_ENDPOINT) {
+    const r = await fetch(CONFIG.FORM_ENDPOINT, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ _subject: subject, ...data })
+    });
+    if (!r.ok) throw new Error('send failed');
+    return 'sent';
+  }
+  if (CONFIG.CONTACT_EMAIL) {
+    const body = Object.entries(data).map(([k, v]) => `${k} : ${v}`).join('\n');
+    location.href = `mailto:${CONFIG.CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return 'mailto';
+  }
+  console.info('[Aperçu] Aucun envoi configuré. Données :', subject, data);
+  return 'preview';
+}
+
+/* ---------- Divers ---------- */
+$('#y').textContent = new Date().getFullYear();
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1 });
+$$('.reveal').forEach(el => io.observe(el));
+const burger = $('.burger'), links = $('.links');
+burger.addEventListener('click', () => { const o = links.classList.toggle('open'); burger.setAttribute('aria-expanded', o); });
+links.addEventListener('click', e => { if (e.target.tagName === 'A') { links.classList.remove('open'); burger.setAttribute('aria-expanded', false); } });
+
+/* ---------- Formulaire de besoin ---------- */
+(() => {
+  const form = $('#needForm');
+  const steps = $$('.step', form);
+  const bars = $$('.steps span', form);
+  const prev = $('#prevBtn'), next = $('#nextBtn');
+  let cur = 1;
+
+  const msg = $('#message');
+  msg.addEventListener('input', () => { $('#count').textContent = msg.value.length; $('#f-msg').classList.remove('invalid'); });
+  $$('input[name=type]').forEach(i => i.addEventListener('change', () => $('#err-type').classList.remove('show')));
+  ['name', 'email'].forEach(id => $('#' + id).addEventListener('input', () => $('#f-' + id).classList.remove('invalid')));
+
+  const val = n => (form.querySelector(`[name="${n}"]:checked`) || {}).value || '';
+  const vals = n => $$(`[name="${n}"]:checked`, form).map(i => i.value).join(', ');
+
+  function collect() {
+    return {
+      'Type de demande': val('type'),
+      'Objectif': vals('goal') || '—',
+      'Besoin': msg.value.trim(),
+      'Délai': val('delay') || '—',
+      'Périmètre': $('#scope').value || '—',
+      'Site': $('#url').value.trim() || '—',
+      'Nom': $('#name').value.trim(),
+      'E-mail': $('#email').value.trim(),
+      'Entreprise': $('#company').value.trim() || '—',
+      'Fonction': $('#role').value.trim() || '—'
+    };
+  }
+
+  function validate(n) {
+    if (n === 1 && !val('type')) { $('#err-type').classList.add('show'); return false; }
+    if (n === 2 && msg.value.trim().length < 20) { $('#f-msg').classList.add('invalid'); msg.focus(); return false; }
+    if (n === 3) {
+      let ok = true;
+      if (!$('#name').value.trim()) { $('#f-name').classList.add('invalid'); ok = false; }
+      if (!emailOk($('#email').value)) { $('#f-email').classList.add('invalid'); ok = false; }
+      if (!ok) form.querySelector('.invalid input').focus();
+      return ok;
+    }
+    if (n === 4 && !$('#consent').checked) { $('#err-consent').classList.add('show'); return false; }
+    return true;
+  }
+
+  function show(n) {
+    cur = n;
+    steps.forEach(s => s.classList.toggle('active', String(s.dataset.step) === String(n)));
+    bars.forEach((b, i) => b.classList.toggle('on', n === 'done' || i < n));
+    prev.hidden = n === 1 || n === 'done';
+    $('#formActions').hidden = n === 'done';
+    next.textContent = n === 4 ? 'Envoyer ma demande' : 'Continuer';
+    $('.sr-status', form).textContent = n === 'done' ? 'Demande envoyée' : `Étape ${n} sur 4`;
+    if (n === 4) {
+      const d = collect();
+      $('#summary').innerHTML = Object.entries(d).filter(([, v]) => v && v !== '—')
+        .map(([k, v]) => `<div><dt>${k}</dt><dd>${v.replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]))}</dd></div>`).join('');
+    }
+    if (window.innerWidth < 1020) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  $('#consent').addEventListener('change', () => $('#err-consent').classList.remove('show'));
+  prev.addEventListener('click', () => show(cur - 1));
+  next.addEventListener('click', async () => {
+    if (!validate(cur)) return;
+    if (cur < 4) return show(cur + 1);
+    if (form._gotcha.value) return show('done');
+    next.disabled = true; next.textContent = 'Envoi…';
+    try {
+      const d = collect();
+      const r = await send(`Nouvelle demande : ${d['Type de demande']} — ${d['Nom']}`, d);
+      if (r === 'preview') toast('Aperçu : configurez FORM_ENDPOINT pour recevoir les demandes.');
+      show('done');
+    } catch {
+      toast("L'envoi a échoué. Réessayez dans un instant.");
+    } finally { next.disabled = false; next.textContent = 'Envoyer ma demande'; }
+  });
+})();
+
+/* ---------- Prise de rendez-vous ---------- */
+(() => {
+  const now = new Date();
+  const first = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const last = new Date(first); last.setDate(last.getDate() + CONFIG.WEEKS_AHEAD * 7);
+  let view = new Date(first.getFullYear(), first.getMonth(), 1);
+  let duration = 30, selDate = null, selTime = null, booked = null;
+
+  const fmtISO = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const fmtLong = d => d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+  const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+  const toHM = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+
+  function slotsFor(d) {
+    const out = [];
+    const minStart = new Date(now.getTime() + CONFIG.MIN_NOTICE_HOURS * 3600e3);
+    CONFIG.HOURS.forEach(([a, b]) => {
+      for (let m = toMin(a); m + duration <= toMin(b); m += 30) {
+        const s = new Date(d); s.setHours(Math.floor(m / 60), m % 60, 0, 0);
+        if (s >= minStart) out.push(toHM(m));
+      }
+    });
+    return out;
+  }
+  const isAvail = d => d >= first && d <= last && CONFIG.WORK_DAYS.includes(d.getDay())
+    && !CONFIG.BLOCKED_DATES.includes(fmtISO(d)) && slotsFor(d).length > 0;
+
+  function renderCal() {
+    $('#monthLabel').textContent = view.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+    $('#prevMonth').disabled = view <= new Date(first.getFullYear(), first.getMonth(), 1);
+    $('#nextMonth').disabled = new Date(view.getFullYear(), view.getMonth() + 1, 1) > last;
+    const cal = $('#cal');
+    cal.innerHTML = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim'].map(d => `<span class="dow">${d}</span>`).join('');
+    const offset = (view.getDay() + 6) % 7;
+    for (let i = 0; i < offset; i++) cal.insertAdjacentHTML('beforeend', '<span></span>');
+    const days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+    for (let i = 1; i <= days; i++) {
+      const d = new Date(view.getFullYear(), view.getMonth(), i);
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = i;
+      const ok = isAvail(d);
+      b.disabled = !ok;
+      b.setAttribute('aria-label', fmtLong(d) + (ok ? '' : ', indisponible'));
+      if (ok) b.classList.add('avail');
+      if (fmtISO(d) === fmtISO(now)) b.classList.add('today');
+      if (selDate && fmtISO(d) === fmtISO(selDate)) b.classList.add('sel');
+      b.addEventListener('click', () => { selDate = d; selTime = null; hideForm(); renderCal(); renderSlots(); });
+      cal.appendChild(b);
+    }
+  }
+
+  function renderSlots() {
+    const box = $('#slots');
+    if (!selDate) { $('#slotsTitle').textContent = 'Choisissez une date'; return; }
+    $('#slotsTitle').textContent = fmtLong(selDate);
+    const list = slotsFor(selDate);
+    box.innerHTML = '';
+    if (!list.length) { box.innerHTML = '<p class="empty">Aucun créneau ce jour-là.</p>'; return; }
+    list.forEach(t => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = t.replace(':', 'h');
+      if (t === selTime) b.classList.add('sel');
+      b.addEventListener('click', () => { selTime = t; renderSlots(); showForm(); });
+      box.appendChild(b);
+    });
+  }
+
+  function endTime() { return toHM(toMin(selTime) + duration); }
+  function showForm() {
+    $('#bkDone').classList.remove('show');
+    $('#picked').textContent = `📅 ${fmtLong(selDate)} · ${selTime.replace(':', 'h')} – ${endTime().replace(':', 'h')}`;
+    $('#bkForm').classList.add('show');
+    $('#bkForm').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(() => $('#bname').focus({ preventScroll: true }), 300);
+  }
+  function hideForm() { $('#bkForm').classList.remove('show'); $('#bkDone').classList.remove('show'); }
+
+  $$('.durations button').forEach(b => b.addEventListener('click', () => {
+    $$('.durations button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    duration = +b.dataset.d; $('#durLabel').textContent = `${duration} minutes`;
+    selTime = null; hideForm(); renderCal(); renderSlots();
+  }));
+  $('#prevMonth').addEventListener('click', () => { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); renderCal(); });
+  $('#nextMonth').addEventListener('click', () => { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); renderCal(); });
+  $('#bkCancel').addEventListener('click', () => { selTime = null; hideForm(); renderSlots(); });
+  ['bname', 'bemail'].forEach(id => $('#' + id).addEventListener('input', () => $('#b-' + id.slice(1)).classList.remove('invalid')));
+
+  $('#bkForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    let ok = true;
+    if (!$('#bname').value.trim()) { $('#b-name').classList.add('invalid'); ok = false; }
+    if (!emailOk($('#bemail').value)) { $('#b-email').classList.add('invalid'); ok = false; }
+    if (!ok) return;
+    const btn = e.submitter || $('#bkForm .btn.primary');
+    btn.disabled = true; btn.textContent = 'Envoi…';
+    booked = {
+      date: new Date(selDate), start: selTime, end: endTime(), duration,
+      mode: $('#bkForm').querySelector('[name=mode]:checked').value,
+      name: $('#bname').value.trim(), email: $('#bemail').value.trim(), topic: $('#btopic').value.trim()
+    };
+    try {
+      const r = await send(`Rendez-vous : ${fmtLong(booked.date)} ${booked.start} — ${booked.name}`, {
+        'Date': fmtLong(booked.date), 'Heure': `${booked.start} – ${booked.end} (heure de Paris)`,
+        'Durée': `${duration} min`, 'Format': booked.mode, 'Nom': booked.name, 'E-mail': booked.email, 'Sujet': booked.topic || '—'
+      });
+      if (r === 'preview') toast('Aperçu : configurez FORM_ENDPOINT pour recevoir les réservations.');
+      $('#bkDoneText').textContent = `${fmtLong(booked.date)} à ${booked.start.replace(':', 'h')} (${duration} min, ${booked.mode.toLowerCase()}). Je vous confirme le rendez-vous par e-mail à ${booked.email}.`;
+      $('#bkForm').classList.remove('show'); $('#bkDone').classList.add('show');
+    } catch { toast("L'envoi a échoué. Réessayez dans un instant."); }
+    finally { btn.disabled = false; btn.textContent = 'Confirmer le rendez-vous'; }
+  });
+
+  $('#icsBtn').addEventListener('click', () => {
+    if (!booked) return;
+    const stamp = (d, t) => { const [h, m] = t.split(':'); const x = new Date(d); x.setHours(+h, +m, 0, 0); return x.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''); };
+    const ics = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Camille M//Portfolio//FR', 'BEGIN:VEVENT',
+      `UID:${Date.now()}@portfolio`, `DTSTAMP:${stamp(new Date(), new Date().toTimeString().slice(0, 5))}`,
+      `DTSTART:${stamp(booked.date, booked.start)}`, `DTEND:${stamp(booked.date, booked.end)}`,
+      `SUMMARY:Échange avec ${CONFIG.OWNER} (${booked.mode})`,
+      `DESCRIPTION:${(booked.topic || 'Échange découverte').replace(/\n/g, '\\n')}`,
+      'STATUS:TENTATIVE', 'END:VEVENT', 'END:VCALENDAR'
+    ].join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    a.download = 'rendez-vous-camille.ics'; a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+  $('#bkAgain').addEventListener('click', () => { selTime = null; selDate = null; booked = null; hideForm(); renderCal(); $('#slots').innerHTML = '<p class="empty">Les horaires disponibles apparaîtront ici.</p>'; $('#slotsTitle').textContent = 'Choisissez une date'; });
+
+  renderCal();
+})();
+</script>
+</body>
+</html>
